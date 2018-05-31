@@ -9,21 +9,17 @@ import os.path
 
 theaterMap = []
 costOfRows = []
-collumns = 0
-rows = 0
-keepRunning = True
-
 #Checks if file exists. if file exists it parses data.
 #If file doesn't exist, it prompts user to create a new theater.
 if os.path.exists('theaterFile.csv'):
     fileInfo = theaterFunctions.openExistingProgram()
     rows = int(fileInfo[0])
     collumns = int(fileInfo[1])
-    for row in range(0, rows):
+    for row in range(rows):
         theaterMap.append([])
-        for collumn in range(0, collumns):
+        for collumn in range(collumns):
             theaterMap[row].append(fileInfo[row+2][collumn])
-    for pricesOfRow in range(0, rows):
+    for pricesOfRow in range(rows):
         costOfRows.append(fileInfo[rows + 2][pricesOfRow])
 else:
     rows = theaterFunctions.findRows()
@@ -32,7 +28,7 @@ else:
     theaterMap = theaterFunctions.buildMap(rows, collumns)
 
 #Prompts user to make a decision.  
-while keepRunning:
+while True:
     print("\nPrint the letter of the action you would like.")
     print("A). Display a Seating chart.")
     print("B). Sell one or more tickets.")
@@ -61,6 +57,6 @@ while keepRunning:
         #Save and Quit
         theaterFunctions.saveProgram(rows, collumns, theaterMap, costOfRows)
         print("Have a Good Day!")
-        keepRunning = False
+        break
     else:
         print("Invald Input")
