@@ -10,26 +10,26 @@ def displaySeating(rows, collumns, theaterMap):
     topNumbers = "      "
     botNumbers = "      "
     counter = 1
-    for seat in range(0, collumns):
+    for seat in range(collumns):
         if seat % 10 == 0 and seat > 0:
             topNumbers += str(int(seat/10))
         else:
             topNumbers += " "
     print(topNumbers)
-    for seat in range(0, collumns):
+    for seat in range(collumns):
         botNumbers += str(counter)
         counter += 1
         if counter == 10:
             counter = 0
     print(botNumbers)
     #converts theater map list into string and prints.
-    for row in range(0, rows):
+    for row in range(rows):
         stringRow = str(row + 1)
         if int(stringRow) < 10:
             newCollumn = "Row " + stringRow + " "
         else:
             newCollumn = "Row " + stringRow
-        for seat in range(0, collumns):
+        for seat in range(collumns):
             newCollumn = newCollumn + theaterMap[row][seat]
         print(newCollumn)
 
@@ -40,8 +40,6 @@ def sellSeat(rows, collumns, theaterMap):
     '''
     keepSelling = True
     while keepSelling:
-        sellRow = 0
-        sellCollumn = 0
         seatTaken = True
         while seatTaken:
             #Gather Input and Error Check for Row.
@@ -99,8 +97,8 @@ def displayStatistics(rows, collumns, theaterMap, costOfRows):
     counter = 0
     seatsSold = 0
     revenue = 0
-    for row in range(0, rows):
-        for seats in range(0, collumns):
+    for row in range(rows):
+        for seats in range(collumns):
             if theaterMap[row][seats] == "O":
                 seatsSold += 1
                 revenue = revenue + costOfRows[row]
@@ -114,10 +112,10 @@ def buildMap(rows, collumns):
     theaterMap = []
     theaterMapTemp = []
     #Creates single row.
-    for seat in range(0, collumns):
+    for seat in range(collumns):
         theaterMapTemp.append("X")
     #Appends duplicates row to create theater map.
-    for row in range(0, rows):
+    for row in range(rows):
         theaterMap.append(theaterMapTemp[:])
 
     return theaterMap
@@ -168,7 +166,7 @@ def findCostOfRows(rows):
     Returns list containing the cost of each row.
     '''
     costOfRows = []
-    for row in range(0, rows):
+    for row in range(rows):
         correctInput = False
         cost = 0
         while not correctInput:
@@ -210,4 +208,3 @@ def saveProgram(rows, collumns, theaterMap, costOfRows):
             w.writerow(theaterMap[row])
         w.writerow(costOfRows)
     print("Program Saved.")
-
